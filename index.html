@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simulateur de prêt</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <div id="contenuPrincipal">
+    <h1>Simulateur de remboursement de prêt</h1>
+    
+    <main id="content-container">
+      <form id="loanForm">
+        <label for="montant">
+          <span class="label-with-info">
+            Montant du prêt (€)
+            <span class="info-icon-wrapper">
+              <span class="info-icon" data-lucide="info"></span>
+              <div class="tooltip">Le montant total que vous souhaitez emprunter</div>
+            </span>
+          </span>
+          <input type="number" id="montant" step="1" required />
+        </label>
+
+        <label for="taux">
+          <span class="label-with-info">
+            Taux annuel (%)
+            <span class="info-icon-wrapper">
+              <span class="info-icon" data-lucide="info"></span>
+              <div class="tooltip">Le taux d'intérêt annuel appliqué à votre prêt</div>
+            </span>
+          </span>
+          <input type="number" id="taux" step="0.01" required />
+        </label>
+
+        <label for="duree">
+          <span class="label-with-info">
+            Durée (mois)
+            <span class="info-icon-wrapper">
+              <span class="info-icon" data-lucide="info"></span>
+              <div class="tooltip">La durée totale du prêt en mois (ex. : 240 pour 20 ans)</div>
+            </span>
+          </span>
+          <input type="number" id="duree" step="1" required />
+        </label>
+
+        <div class="resultats-group">
+          <label for="mensualite">
+            <span class="label-with-info">
+              Mensualité (€)
+              <span class="info-icon-wrapper">
+                <span class="info-icon" data-lucide="info"></span>
+                <div class="tooltip">Le montant à rembourser chaque mois, incluant capital et intérêts.</div>
+              </span>
+            </span>
+            <input type="text" id="mensualite" class="stale" disabled />
+          </label>
+
+          <label for="interetsTotal">
+            <span class="label-with-info">
+              Intérêts totaux (€)
+              <span class="info-icon-wrapper">
+                <span class="info-icon" data-lucide="info"></span>
+                <div class="tooltip">Montant total des intérêts payés sur la durée du prêt.</div>
+              </span>
+            </span>
+            <input type="text" id="interetsTotal" class="stale" disabled />
+          </label>
+
+          <label for="coutTotal">
+            <span class="label-with-info">
+              Coût total (€)
+              <span class="info-icon-wrapper">
+                <span class="info-icon" data-lucide="info"></span>
+                <div class="tooltip">Montant total payé sur la durée du prêt, intérêts compris.</div>
+              </span>
+            </span>
+            <input type="text" id="coutTotal" class="stale" disabled />
+          </label>
+        </div>
+
+
+        <button type="submit">Calculer l'échéancier</button>
+      </form>
+
+      <div id="graphique-container">
+        <canvas id="echeancierChart"></canvas>
+      </div>
+
+      <div id="resultat"></div>
+
+      <script src="simulateur.js"></script>
+      <script>lucide.createIcons();</script>
+
+    </main>
+
+  </div>
+  
+  <footer id="footer">
+    <p>Ce simulateur est fourni à titre indicatif.</p>
+  </footer>
+</body>
+</html>
